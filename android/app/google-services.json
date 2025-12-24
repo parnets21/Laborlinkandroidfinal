@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "204679710402",
+    "project_id": "laborlink-cdd9a",
+    "storage_bucket": "laborlink-cdd9a.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:204679710402:android:7affcebbe0333426061d5b",
+        "android_client_info": {
+          "package_name": "com.labor_link"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBFIBCpcM6HbABYXYw1_R9aibSTo0jpDC0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
