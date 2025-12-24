@@ -951,7 +951,9 @@ const EmployerProfile = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
   const [jobs, setJobs] = useState([]);
-  const [AllJobs, setAllJobs] = useState([]);
+  const [applicationCount, setApplicationCount] = useState(0);
+  const [offerLetters, setOfferLetters] = useState([]);
+  const [companyId, setCompanyId] = useState([]);
 
   const fetchJobs = async () => {
     try {
@@ -961,36 +963,58 @@ const EmployerProfile = ({ navigation }) => {
 
       if (response.data.jobs && Array.isArray(response.data.jobs)) {
         setJobs(response.data.jobs);
+        setApplicationCount(response.data.applicationCount || 0);
+        
+        // Extract job IDs for fetching offer letters
+        const extractedIds = response.data.jobs.map(job => String(job._id));
+        setCompanyId(extractedIds);
       } else {
         setJobs([]);
+        setApplicationCount(0);
+        setCompanyId([]);
       }
       setError(null);
     } catch (error) {
       console.error('Error fetching jobs:', error);
       setError('Failed to load jobs');
       setJobs([]);
+      setApplicationCount(0);
+      setCompanyId([]);
     } finally {
       setLoading(false);
       setRefreshing(false);
     }
   };
 
-  const fetchAllJobs = async () => {
-    try {
-      setIsLoading(true);
-      const response = await fetch(`${BASE_URL}/api/user/getAllJobs`);
+  const fetchOfferLetters = async () => {
+    if (!companyId || companyId.length === 0) {
+      setOfferLetters([]);
+      return;
+    }
 
-      if (!response.ok) {
-        throw new Error('Failed to fetch jobs');
+    try {
+      let allOfferLetters = [];
+
+      for (const jobId of companyId) {
+        try {
+          const url = `https://laborlink.co.in/api/offers/applications/${jobId}`;
+          const response = await fetch(url);
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data.success && Array.isArray(data.data)) {
+              allOfferLetters = [...allOfferLetters, ...data.data];
+            }
+          }
+        } catch (fetchError) {
+          console.error(`Error fetching for job ${jobId}:`, fetchError);
+        }
       }
 
-      const data = await response.json();
-      setAllJobs(data || []);
+      setOfferLetters(allOfferLetters);
     } catch (error) {
-      console.error('Error fetching jobs:', error);
-      setError(error.message);
-    } finally {
-      setIsLoading(false);
+      console.error('Error in fetchOfferLetters:', error);
+      setOfferLetters([]);
     }
   };
 
@@ -1088,8 +1112,21 @@ const EmployerProfile = ({ navigation }) => {
   useEffect(() => {
     fetchProfileData();
     fetchJobs();
-    fetchAllJobs();
   }, []);
+
+  useEffect(() => {
+    if (companyId && companyId.length > 0) {
+      fetchOfferLetters();
+    }
+  }, [companyId]);
+
+  useEffect(() => {
+    console.log('showPasswordModal changed to:', showPasswordModal);
+  }, [showPasswordModal]);
+
+  useEffect(() => {
+    console.log('showPasswordModal changed to:', showPasswordModal);
+  }, [showPasswordModal]);
 
   // const handleUpdateProfile = async () => {
   //   try {
@@ -1191,33 +1228,58 @@ const EmployerProfile = ({ navigation }) => {
 
 
   const handlePasswordChange = async () => {
-    if (passwordData.newPassword !== passwordData.confirmPassword) {
+    // Trim all password fields
+    const currentPwd = passwordData.currentPassword?.trim();
+    const newPwd = passwordData.newPassword?.trim();
+    const confirmPwd = passwordData.confirmPassword?.trim();
+
+    // Validate all fields are filled
+    if (!currentPwd || !newPwd || !confirmPwd) {
+      Alert.alert('Error', 'Please fill in all password fields');
+      return;
+    }
+
+    // Check if new passwords match
+    if (newPwd !== confirmPwd) {
       Alert.alert('Error', 'New passwords do not match');
+      return;
+    }
+
+    // Check minimum password length
+    if (newPwd.length < 6) {
+      Alert.alert('Error', 'New password must be at least 6 characters long');
       return;
     }
 
     try {
       const userData = await getUserData();
+      
+      console.log('Attempting password change for user:', userData._id);
+      console.log('Current password length:', currentPwd.length);
+      console.log('New password length:', newPwd.length);
 
-      const response = await axios.put(`${BASE_URL}/api/user/changePassword`, {
-        employerId: userData._id,
-        currentPassword: passwordData.currentPassword,
-        newPassword: passwordData.newPassword
+      const response = await axios.post(`${BASE_URL}/api/user/changePassword`, {
+        userId: userData._id,
+        oldPassword: currentPwd,
+        newPassword: newPwd
       });
 
-      if (response.data.success) {
+      console.log('Password change response:', response.data);
+
+      if (response.data.msg) {
         setShowPasswordModal(false);
         setPasswordData({ currentPassword: '', newPassword: '', confirmPassword: '' });
         Alert.alert('Success', 'Password updated successfully');
       } else {
-        throw new Error(response.data.message || 'Password change failed');
+        throw new Error(response.data.error || 'Password change failed');
       }
     } catch (error) {
       console.error('Error changing password:', error);
-      Alert.alert(
-        'Error',
-        error.response?.data?.message || 'Failed to change password'
-      );
+      console.error('Error response:', error.response?.data);
+      console.error('Error status:', error.response?.status);
+      
+      const errorMessage = error.response?.data?.error || error.message || 'Failed to change password';
+      Alert.alert('Error', errorMessage);
     }
   };
 
@@ -1264,7 +1326,6 @@ const EmployerProfile = ({ navigation }) => {
     setRefreshing(true);
     fetchProfileData();
     fetchJobs();
-    fetchAllJobs();
   };
 
   if (loading && !refreshing) {
@@ -1357,19 +1418,19 @@ const EmployerProfile = ({ navigation }) => {
             <View style={styles.statsContainer}>
               <View style={styles.statItem}>
                 <Icon name="people" size={24} color="#2563EB" />
-                <Text style={styles.statNumber}>{editedData.numberOfemp || '0'}</Text>
+                <Text style={styles.statNumber}>{offerLetters.filter(app => app?.applicationStatus === 'hired').length}</Text>
                 <Text style={styles.statLabel}>Employees</Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
                 <Icon name="work" size={24} color="#2563EB" />
-                <Text style={styles.statNumber}>{jobs?.length}</Text>
+                <Text style={styles.statNumber}>{jobs?.length || 0}</Text>
                 <Text style={styles.statLabel}>Active Jobs</Text>
               </View>
               <View style={styles.statDivider} />
               <View style={styles.statItem}>
                 <Icon name="person-search" size={24} color="#2563EB" />
-                <Text style={styles.statNumber}>{AllJobs?.data?.length}</Text>
+                <Text style={styles.statNumber}>{applicationCount}</Text>
                 <Text style={styles.statLabel}>Applications</Text>
               </View>
             </View>
@@ -1485,7 +1546,7 @@ const EmployerProfile = ({ navigation }) => {
               <Text style={styles.sectionTitle}>Account Settings</Text>
               <TouchableOpacity
                 style={styles.settingItem}
-                onPress={() => setShowPasswordModal(true)}
+                onPress={() => navigation.navigate('ChangePasswordScreen')}
               >
                 <Icon name="lock" size={20} color="#6B7280" />
                 <Text style={styles.settingText}>Change Password</Text>
@@ -1522,10 +1583,8 @@ const EmployerProfile = ({ navigation }) => {
           style={styles.floatingEditButton}
           onPress={() => {
             if (editMode) {
-              // If already in edit mode, save changes
               handleUpdateProfile();
             } else {
-              // Enter edit mode
               setEditedData({ ...profileData });
               setEditMode(true);
             }
@@ -1534,53 +1593,6 @@ const EmployerProfile = ({ navigation }) => {
           <Icon name={editMode ? "check" : "edit"} size={24} color="#fff" />
         </TouchableOpacity>
       )}
-
-      <Modal
-        visible={showPasswordModal}
-        transparent={true}
-        animationType="slide"
-      >
-        <View style={styles.modalContainer}>
-          <View style={styles.modalContent}>
-            <Text style={styles.modalTitle}>Change Password</Text>
-            <TextInput
-              style={styles.modalInput}
-              placeholder="Current Password"
-              secureTextEntry
-              value={passwordData.currentPassword}
-              onChangeText={(text) => setPasswordData({ ...passwordData, currentPassword: text })}
-            />
-            <TextInput
-              style={styles.modalInput}
-              placeholder="New Password"
-              secureTextEntry
-              value={passwordData.newPassword}
-              onChangeText={(text) => setPasswordData({ ...passwordData, newPassword: text })}
-            />
-            <TextInput
-              style={styles.modalInput}
-              placeholder="Confirm New Password"
-              secureTextEntry
-              value={passwordData.confirmPassword}
-              onChangeText={(text) => setPasswordData({ ...passwordData, confirmPassword: text })}
-            />
-            <View style={styles.modalButtons}>
-              <TouchableOpacity
-                style={[styles.modalButton, styles.cancelButton]}
-                onPress={() => setShowPasswordModal(false)}
-              >
-                <Text style={styles.modalButtonText}>Cancel</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={[styles.modalButton, styles.saveButton]}
-                onPress={handlePasswordChange}
-              >
-                <Text style={styles.modalButtonText}>Save</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </View>
-      </Modal>
     </SafeAreaView>
   );
 };
@@ -1711,12 +1723,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: 'rgba(0,0,0,0.5)',
+    zIndex: 9999,
   },
   modalContent: {
-    backgroundColor: '#fff',
+    backgroundColor: '#FFFFFF',
     padding: 20,
     borderRadius: 12,
     width: '90%',
+    elevation: 10,
+    zIndex: 10000,
   },
   modalTitle: {
     fontSize: 20,

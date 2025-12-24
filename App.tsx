@@ -71,6 +71,7 @@ import DeleteAccountScreen from './screens/DeleteAccountScreen.js';
 import TermsEmployee from './screens/TermsEmployee.js';
 import TermsEmployer from './screens/TermsEmployer.js';
 import SubscriptionPlan from './screens/SubscriptionPlan.js';
+import ChangePasswordScreen from './screens/ChangePasswordScreen.js';
 import { AuthProvider } from './context/AuthContext.js'; 
 import messaging from '@react-native-firebase/messaging'; 
 import  { useEffect } from 'react'; 
@@ -133,6 +134,7 @@ Settings:undefined;
   EmployeeLocation:undefined;
   EmployeeSubscription:undefined;
   EmployerOffer:undefined;
+  ChangePasswordScreen:undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -370,6 +372,11 @@ const App = () => {
           <Stack.Screen 
           name="EmployeeSubscription" 
           component={SubscriptionPlan}
+          options={{ headerShown: false }}
+        />
+          <Stack.Screen 
+          name="ChangePasswordScreen" 
+          component={ChangePasswordScreen}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
