@@ -6,6 +6,9 @@ import { createStackNavigator } from '@react-navigation/stack';
 import CreateJob from '../screens/CreateJob';
 import CreateJob2 from '../screens/CreateJob2';
 import EmployerDashboard from '../screens/EmployerDashboard';
+import ForgotPasswordScreen from '../screens/ForgotPasswordScreen';
+import VerifyOTPScreen from '../screens/VerifyOTPScreen';
+import ResetPasswordScreen from '../screens/ResetPasswordScreen';
 // Import other screens as needed
 
 const Stack = createStackNavigator();
@@ -22,6 +25,9 @@ const AppNavigator = () => {
         <Stack.Screen name="EmployerDashboard" component={EmployerDashboard} />
         <Stack.Screen name="CreateJob" component={CreateJob} />
         <Stack.Screen name="CreateJob2" component={CreateJob2} />
+        <Stack.Screen name="ForgotPasswordScreen" component={ForgotPasswordScreen} />
+        <Stack.Screen name="VerifyOTPScreen" component={VerifyOTPScreen} />
+        <Stack.Screen name="ResetPasswordScreen" component={ResetPasswordScreen} />
         {/* Add other screens as needed */}
       </Stack.Navigator>
     </NavigationContainer>

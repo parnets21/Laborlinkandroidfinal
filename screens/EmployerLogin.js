@@ -76,6 +76,10 @@ const EmployerLogin = ({ navigation }) => {
     }
   };
 
+  const handleForgotPassword = () => {
+    navigation.navigate('ForgotPasswordScreen', { userType: 'employer' });
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
@@ -135,6 +139,12 @@ const EmployerLogin = ({ navigation }) => {
           {errors.password && <Text style={styles.errorText}>{errors.password}</Text>}
         </View>
 
+        <TouchableOpacity
+          style={styles.forgotPasswordContainer}
+          onPress={handleForgotPassword}
+        >
+          <Text style={styles.forgotPasswordText}>Forgot Password?</Text>
+        </TouchableOpacity>
 
         <TouchableOpacity
           style={styles.termsContainer}
@@ -267,6 +277,15 @@ const styles = StyleSheet.create({
     color: '#EF4444',
     fontSize: 14,
     marginTop: 4,
+  },
+  forgotPasswordContainer: {
+    alignSelf: 'flex-end',
+    marginBottom: 12,
+  },
+  forgotPasswordText: {
+    color: '#134083',
+    fontSize: 14,
+    fontWeight: '500',
   },
   loginButton: {
     backgroundColor: '#134083',

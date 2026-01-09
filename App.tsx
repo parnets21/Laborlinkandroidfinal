@@ -72,6 +72,9 @@ import TermsEmployee from './screens/TermsEmployee.js';
 import TermsEmployer from './screens/TermsEmployer.js';
 import SubscriptionPlan from './screens/SubscriptionPlan.js';
 import ChangePasswordScreen from './screens/ChangePasswordScreen.js';
+import ForgotPasswordScreen from './screens/ForgotPasswordScreen.js';
+import VerifyOTPScreen from './screens/VerifyOTPScreen.js';
+import ResetPasswordScreen from './screens/ResetPasswordScreen.js';
 import { AuthProvider } from './context/AuthContext.js'; 
 import messaging from '@react-native-firebase/messaging'; 
 import  { useEffect } from 'react'; 
@@ -135,6 +138,9 @@ Settings:undefined;
   EmployeeSubscription:undefined;
   EmployerOffer:undefined;
   ChangePasswordScreen:undefined;
+  ForgotPasswordScreen: { userType?: string };
+  VerifyOTPScreen: { email: string; userType: string };
+  ResetPasswordScreen: { email: string; userType: string; resetToken: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -192,6 +198,21 @@ const App = () => {
           <Stack.Screen 
             name="EmployerLogin" 
             component={EmployerLogin}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="ForgotPasswordScreen" 
+            component={ForgotPasswordScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="VerifyOTPScreen" 
+            component={VerifyOTPScreen}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen 
+            name="ResetPasswordScreen" 
+            component={ResetPasswordScreen}
             options={{ headerShown: false }}
           />
           <Stack.Screen 

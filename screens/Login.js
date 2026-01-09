@@ -334,13 +334,7 @@ const Login = ({ navigation }) => {
   }
 };
   const handleForgotPassword = () => {
-    Toast.show({
-      type: 'success',
-      text1: 'Password Link Sent',
-      text2: 'Check your registered email address to reset your password.',
-      position: 'top',
-      visibilityTime: 3000,
-    });
+    navigation.navigate('ForgotPasswordScreen', { userType: 'jobseeker' });
   };
 
   return (
