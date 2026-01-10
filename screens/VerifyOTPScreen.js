@@ -93,7 +93,6 @@ const VerifyOTPScreen = () => {
         navigation.navigate('ResetPasswordScreen', {
           email: email,
           userType: userType,
-          resetToken: data.resetToken,
         });
       } else {
         ToastAndroid.show(data.error || 'Invalid OTP. Please try again.', ToastAndroid.LONG);

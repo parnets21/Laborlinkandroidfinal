@@ -341,7 +341,13 @@ const Login = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <TouchableOpacity
         style={styles.backButton}
-        onPress={() => navigation.goBack()}
+        onPress={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          } else {
+            navigation.navigate('Welcome');
+          }
+        }}
         activeOpacity={0.7}
       >
         <Icon name="arrow-back" size={24} color="#fff" />

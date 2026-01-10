@@ -140,7 +140,7 @@ Settings:undefined;
   ChangePasswordScreen:undefined;
   ForgotPasswordScreen: { userType?: string };
   VerifyOTPScreen: { email: string; userType: string };
-  ResetPasswordScreen: { email: string; userType: string; resetToken: string };
+  ResetPasswordScreen: { email: string; userType: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

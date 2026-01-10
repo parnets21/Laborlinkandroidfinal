@@ -19,7 +19,7 @@ import { BASE_URL } from '../constants/config';
 const ResetPasswordScreen = () => {
   const navigation = useNavigation();
   const route = useRoute();
-  const { email, userType, resetToken } = route.params;
+  const { email, userType } = route.params;
 
   const [newPassword, setNewPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
@@ -62,7 +62,6 @@ const ResetPasswordScreen = () => {
         },
         body: JSON.stringify({
           email: email,
-          resetToken: resetToken,
           newPassword: newPassword,
           confirmPassword: confirmPassword,
           userType: userType,
