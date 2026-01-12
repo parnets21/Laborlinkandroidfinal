@@ -2,8 +2,8 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 
-const BASE_URL = 'https://laborlink.co.in'; // For Android emulator
-// const BASE_URL = 'https://laborlink.co.in'; // For iOS simulator
+const BASE_URL = 'http://localhost:8500'; // For Android emulator
+// const BASE_URL = 'http://localhost:8500'; // For iOS simulator
 
 const ProfileContext = createContext();
 
@@ -60,7 +60,7 @@ export const ProfileProvider = ({ children }) => {
         const userIdForLimit = parsed?._id || (await AsyncStorage.getItem('userId'));
         if (userIdForLimit) {
           // Ask backend if this action is allowed and get current usage
-          const resp = await fetch(`https://laborlink.co.in/api/subscription-validation/validate/${userIdForLimit}/profile_update`, {
+          const resp = await fetch(`http://localhost:8500/api/subscription-validation/validate/${userIdForLimit}/profile_update`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userType: 'employee' })
@@ -117,7 +117,7 @@ export const ProfileProvider = ({ children }) => {
         const parsed = storedUser ? JSON.parse(storedUser) : null;
         const userIdForUsage = parsed?._id || (await AsyncStorage.getItem('userId'));
         if (userIdForUsage) {
-          await fetch('https://laborlink.co.in/api/subscription-validation/record-usage', {
+          await fetch('http://localhost:8500/api/subscription-validation/record-usage', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ userId: userIdForUsage, action: 'profile_update', timestamp: new Date().toISOString() })

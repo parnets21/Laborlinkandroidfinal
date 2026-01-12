@@ -152,7 +152,7 @@ const App = () => {
       .then(token => {
         console.log("🔥 New FCM Token:", token); // Check Metro console for this
         // You can also send it to your backend API here:
-        // fetch('https://laborlink.co.in/api/user/fcmToken', { method: 'POST', body: JSON.stringify({ token }) })
+        // fetch('http://localhost:8500/api/user/fcmToken', { method: 'POST', body: JSON.stringify({ token }) })
       })
       .catch(err => console.log("Error getting FCM token", err));
 

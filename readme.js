@@ -7,8 +7,8 @@
 // // Dummy data
 // const recentActivities = ["iOS, Mohali", "Remote job", "Full time", "UI/UX designer", "Product designer", "Graphics designer"]
 
-// const BASE_URL = 'https://laborlink.co.in'; // For Android Emulator
-// // const BASE_URL = 'https://laborlink.co.in'; // For iOS Simulator
+// const BASE_URL = 'http://localhost:8500'; // For Android Emulator
+// // const BASE_URL = 'http://localhost:8500'; // For iOS Simulator
 
 // const popularJobs = [
 //   {

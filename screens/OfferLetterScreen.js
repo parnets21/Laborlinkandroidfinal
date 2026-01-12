@@ -48,7 +48,7 @@ const OfferLetterScreen = ({ route }) => {
         console.log('User-ID:', userId);
 
         // Fixed API call to match your endpoint
-        const response = await axios.get(`https://laborlink.co.in/api/user/getlistOOfaplly/${userId}`);
+        const response = await axios.get(`http://localhost:8500/api/user/getlistOOfaplly/${userId}`);
 
         console.log("API Response:", response.data);
 
@@ -87,7 +87,7 @@ const OfferLetterScreen = ({ route }) => {
 
     try {
       setSubmitting(true);
-      await axios.post(`https://laborlink.co.in/api/offers/respond/${selectedOffer._id}`, {
+      await axios.post(`http://localhost:8500/api/offers/respond/${selectedOffer._id}`, {
         status: responseStatus,
         response: responseMessage,
       });
@@ -108,7 +108,7 @@ const OfferLetterScreen = ({ route }) => {
                   console.warn('Missing userId for location update');
                   return;
                 }
-                axios.post('https://laborlink.co.in/api/user/location', {
+                axios.post('http://localhost:8500/api/user/location', {
                   jobseekerId,
                   latitude,
                   longitude,
@@ -136,7 +136,7 @@ const OfferLetterScreen = ({ route }) => {
       const user = JSON.parse(userData);
       const userId = user._id;
 
-      const response = await axios.get(`https://laborlink.co.in/api/user/getlistOOfaplly/${userId}`);
+      const response = await axios.get(`http://localhost:8500/api/user/getlistOOfaplly/${userId}`);
       const allOffers = response.data.success || [];
       const sentOffers = allOffers.filter(offer => offer.offerLetter?.status === 'sent');
       setOffersList(sentOffers);
@@ -217,7 +217,7 @@ const OfferLetterScreen = ({ route }) => {
               const userData = await AsyncStorage.getItem('userData');
               const user = JSON.parse(userData);
               const userId = user._id;
-              const response = await axios.get(`https://laborlink.co.in/api/user/getlistOOfaplly/${userId}`);
+              const response = await axios.get(`http://localhost:8500/api/user/getlistOOfaplly/${userId}`);
               const allOffers = response.data.success || [];
               const sentOffers = allOffers.filter(offer => offer.offerLetter?.status === 'sent');
               setOffersList(sentOffers);
@@ -329,7 +329,7 @@ const OfferLetterScreen = ({ route }) => {
               </Text>
               <TouchableOpacity
                 style={styles.downloadButton}
-                onPress={() => Linking.openURL(`https://laborlink.co.in${offerLetter.url}`)}
+                onPress={() => Linking.openURL(`http://localhost:8500${offerLetter.url}`)}
               >
                 <Icon name="download" size={16} color="white" />
                 <Text style={styles.buttonText}>Download Offer Letter PDF</Text>

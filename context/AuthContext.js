@@ -13,7 +13,7 @@ try {
   console.log('AuthContext: react-native-device-info not available, using fallbacks');
 }
 import AsyncStorage from "@react-native-async-storage/async-storage";
-const BASE_URL = "https://laborlink.co.in"; 
+const BASE_URL = "http://localhost:8500"; 
 const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
 const [user, setUser] = useState(null);

@@ -38,7 +38,7 @@ const GenerateOffer = () => {
   const [showJobSelector, setShowJobSelector] = useState(false);
   const [jobList, setJobList] = useState([]);
 
-  const API_BASE_URL = 'https://laborlink.co.in';
+  const API_BASE_URL = 'http://localhost:8500';
 
   const fetchAllJobs = async () => {
     setLoading(true);

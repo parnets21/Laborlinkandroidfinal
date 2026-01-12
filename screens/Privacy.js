@@ -28,15 +28,15 @@ const Privacy = () => {
           </Text>
           <Text style={styles.paragraph}>
             <Text style={styles.bold}>Labor Link Pvt Ltd </Text> ("us", "we", or "our") operates{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in')}>
-              https://laborlink.co.in
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500')}>
+              http://localhost:8500
             </Text>{' '}
             (hereinafter referred to as <Text style={styles.bold}>"Service"</Text>).
           </Text>
           <Text style={styles.paragraph}>
             Our Privacy Policy governs your visit to{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in')}>
-              https://laborlink.co.in
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500')}>
+              http://localhost:8500
             </Text>, and explains how we collect, safeguard and disclose information that results from your use of our Service.
           </Text>
           <Text style={styles.paragraph}>
@@ -51,8 +51,8 @@ const Privacy = () => {
           <Text style={styles.sectionTitle}>2. Definitions</Text>
           <Text style={styles.paragraph}>
             <Text style={styles.bold}>SERVICE</Text> means the{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in')}>
-              https://laborlink.co.in
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500')}>
+              http://localhost:8500
             </Text>{' '}
             website operated by Labor Link Pvt Ltd.
           </Text>
@@ -152,7 +152,7 @@ const Privacy = () => {
           <Text style={styles.subsectionTitle}>Other Data</Text>
           <Text style={styles.paragraph}>
             While using our Service, we may also collect the following information: sex, age, date of birth, place of birth, passport details, citizenship, registration at place of residence and actual address, telephone number (work, mobile), details of documents on education, qualification, professional training, employment agreements,{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in/non-disclosure-agreement/')}>
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500/non-disclosure-agreement/')}>
               NDA agreements
             </Text>, information on bonuses and compensation, information on marital status, family members, social security (or other taxpayer identification) number, office location and other data.
           </Text>
@@ -381,18 +381,18 @@ const Privacy = () => {
           </Text>
           <Text style={styles.paragraph}>
             For example, the outlined{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in/privacy/')}>
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500/privacy/')}>
               privacy policy
             </Text>{' '}
             has been made using{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in/')}>
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500/')}>
               laborlink.co.in
             </Text>, a free tool that helps create high-quality legal documents. LaborLink's{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in/privacy/')}>
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500/privacy/')}>
               privacy policy generator
             </Text>{' '}
             is an easy-to-use tool for creating a{' '}
-            <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in/blog-privacy-policy/')}>
+            <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500/blog-privacy-policy/')}>
               privacy policy for blog
             </Text>, website, e-commerce store or mobile app.
           </Text>
@@ -441,15 +441,15 @@ const Privacy = () => {
     
         <Text style={styles.footer}>
           This{' '}
-          <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in/privacy/')}>
+          <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500/privacy/')}>
             Privacy Policy
           </Text>{' '}
           was created for{' '}
-          <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in')}>
-            https://laborlink.co.in
+          <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500')}>
+            http://localhost:8500
           </Text>{' '}
           by{' '}
-          <Text style={styles.link} onPress={() => handleLinkPress('https://laborlink.co.in')}>
+          <Text style={styles.link} onPress={() => handleLinkPress('http://localhost:8500')}>
             laborlink.co.in
           </Text>{' '}
           on 2025-06-13.

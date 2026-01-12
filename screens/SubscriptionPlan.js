@@ -21,7 +21,7 @@ import { useIsFocused } from '@react-navigation/native';
 const SubscriptionPlan = ({route, navigation}) => { 
     const {type} = route.params;
     
-    const Basic_Url = 'https://laborlink.co.in';
+    const Basic_Url = 'http://localhost:8500';
     const [searchCount, setSearchCount] = useState(3); 
     const [subscription, setSubscription] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -597,7 +597,7 @@ const SubscriptionPlan = ({route, navigation}) => {
     useEffect(() => {
         const handleDeepLink = ({ url }) => {
             console.log('Deep link received:', url);
-            if (url && url.includes('https://laborlink.co.in/PaymentSuccess')) {
+            if (url && url.includes('http://localhost:8500/PaymentSuccess')) {
                 setWebViewVisible(false);
                 setCheckoutUrl('');
                 if (merchantTransactionId) {
@@ -608,7 +608,7 @@ const SubscriptionPlan = ({route, navigation}) => {
 
         Linking.addEventListener('url', handleDeepLink);
         Linking.getInitialURL().then(url => {
-            if (url && url.includes('https://laborlink.co.in/PaymentSuccess') && merchantTransactionId) {
+            if (url && url.includes('http://localhost:8500/PaymentSuccess') && merchantTransactionId) {
                 handleDeepLink({ url });
             }
         });
@@ -1426,7 +1426,7 @@ const SubscriptionPlan = ({route, navigation}) => {
                                 const url = request?.url || request?.nativeEvent?.url;
                                 console.log("Intercepted URL:", url);
 
-                                if (url && url.includes("https://laborlink.co.in/PaymentSuccess")) {
+                                if (url && url.includes("http://localhost:8500/PaymentSuccess")) {
                                     setWebViewVisible(false);
                                     setCheckoutUrl('');
 

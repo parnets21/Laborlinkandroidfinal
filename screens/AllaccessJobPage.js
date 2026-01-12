@@ -14,7 +14,7 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-const BASE_URL = 'https://laborlink.co.in';
+const BASE_URL = 'http://localhost:8500';
 
 const AllaccessJobPage = ({ navigation }) => {
   const [jobs, setJobs] = useState([]);

@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-const Basic_Url = "https://laborlink.co.in"; // Update with your actual URL
+const Basic_Url = "http://localhost:8500"; // Update with your actual URL
 
 class SubscriptionValidationService {
   

@@ -37,7 +37,7 @@ const Terms = () => {
           </Text>
           <Text style={styles.paragraph}>
             These Terms of Service ("Terms", "Terms of Service") govern your use of our website located at{' '}
-            <LinkText onPress={() => handleUrlPress('https://laborlink.co.in')}>
+            <LinkText onPress={() => handleUrlPress('http://localhost:8500')}>
             </LinkText>{' '}
             (together or individually "Service") operated by <Text style={styles.bold}>Labor Link</Text>.
           </Text>
@@ -214,14 +214,14 @@ const Terms = () => {
           </Text>
           <Text style={styles.paragraph}>
             For example, the outlined{' '}
-            <LinkText onPress={() => handleUrlPress('https://laborlink.co.in/Terms')}>
+            <LinkText onPress={() => handleUrlPress('http://localhost:8500/Terms')}>
               Terms of Use
             </LinkText>{' '}
             have been created using{' '}
-            <LinkText onPress={() => handleUrlPress('https://laborlink.co.in')}>
+            <LinkText onPress={() => handleUrlPress('http://localhost:8500')}>
               laborlink.co.in
             </LinkText>, a free web application for generating high-quality legal documents. LaborLink's{' '}
-            <LinkText onPress={() => handleUrlPress('https://laborlink.co.in')}>
+            <LinkText onPress={() => handleUrlPress('http://localhost:8500')}>
               Terms and Conditions generator
             </LinkText>{' '}
             is an easy-to-use free tool for creating an excellent standard Terms of Service template for a website, blog, e-commerce store or app.
@@ -329,15 +329,15 @@ const Terms = () => {
 
         <Text style={styles.footer}>
           These{' '}
-          <LinkText onPress={() => handleUrlPress('https://laborlink.co.in/Terms')}>
+          <LinkText onPress={() => handleUrlPress('http://localhost:8500/Terms')}>
             Terms of Service
           </LinkText>{' '}
           were created for{' '}
-          <LinkText onPress={() => handleUrlPress('https://laborlink.co.in')}>
-            https://laborlink.co.in
+          <LinkText onPress={() => handleUrlPress('http://localhost:8500')}>
+            http://localhost:8500
           </LinkText>{' '}
           by{' '}
-          <LinkText onPress={() => handleUrlPress('https://laborlink.co.in')}>
+          <LinkText onPress={() => handleUrlPress('http://localhost:8500')}>
             laborlink.co.in
           </LinkText>{' '}
           on 2025-06-13.

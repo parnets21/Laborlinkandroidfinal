@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://laborlink.co.in'; 
+export const BASE_URL = 'http://localhost:8500'; 

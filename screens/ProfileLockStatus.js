@@ -31,7 +31,7 @@ const ProfileLockStatus = ({ navigation }) => {
         const userId = parsedUser._id;
 
         // Fetch applications to find hired status
-        const response = await axios.get(`https://laborlink.co.in/api/user/getlistOOfaplly/${userId}`);
+        const response = await axios.get(`http://localhost:8500/api/user/getlistOOfaplly/${userId}`);
         const applications = response.data.success || [];
 
         // Find the hired application

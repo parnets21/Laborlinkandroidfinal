@@ -20,7 +20,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons';
 
 
 const AllJobsScreen = ({ navigation }) => {
-  const BASE_URL = 'https://laborlink.co.in';
+  const BASE_URL = 'http://localhost:8500';
   const [jobs, setJobs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);

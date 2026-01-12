@@ -20,7 +20,7 @@ import { WebView } from 'react-native-webview';
 const { width } = Dimensions.get('window');
 
 const SubscriptionDashboard = ({ navigation }) => {
-    const Basic_Url = 'https://laborlink.co.in';
+    const Basic_Url = 'http://localhost:8500';
     
     // State management
     const [loading, setLoading] = useState(true);

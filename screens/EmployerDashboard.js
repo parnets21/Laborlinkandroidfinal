@@ -125,7 +125,7 @@ const EmployerDashboard = ({ navigation }) => {
 
       for (const jobId of companyId) {
         try {
-          const url = `https://laborlink.co.in/api/offers/applications/${jobId}`;
+          const url = `http://localhost:8500/api/offers/applications/${jobId}`;
           console.log('Fetching offer letters for job:', jobId, 'from:', url);
 
           const response = await fetch(url);

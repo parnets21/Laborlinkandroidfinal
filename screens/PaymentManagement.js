@@ -11,7 +11,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const PaymentManagement = ({ navigation }) => {
-  const Basic_Url = 'https://laborlink.co.in';
+  const Basic_Url = 'http://localhost:8500';
   const [searchCount, setSearchCount] = useState(3);
   const [transactions, setTransactions] = useState([
     {

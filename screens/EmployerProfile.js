@@ -997,7 +997,7 @@ const EmployerProfile = ({ navigation }) => {
 
       for (const jobId of companyId) {
         try {
-          const url = `https://laborlink.co.in/api/offers/applications/${jobId}`;
+          const url = `http://localhost:8500/api/offers/applications/${jobId}`;
           const response = await fetch(url);
 
           if (response.ok) {

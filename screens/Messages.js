@@ -31,7 +31,7 @@ const Messages = ({ navigation }) => {
         const parsedUser = JSON.parse(userData);
         const userId = parsedUser._id;
 
-        const response = await axios.get(`https://laborlink.co.in/api/user/getlistOOfaplly/${userId}`);
+        const response = await axios.get(`http://localhost:8500/api/user/getlistOOfaplly/${userId}`);
         const apps = response.data.success || [];
         setApplications(apps);
 

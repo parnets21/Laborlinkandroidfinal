@@ -136,7 +136,7 @@ const JobDetailsPage = ({ route, navigation }) => {
       console.log('Fetching applications for job ID:', jobId);
 
       // Use the API endpoint with job ID
-      const response = await fetch(`https://laborlink.co.in/api/user/getApplyList/${jobId}`);
+      const response = await fetch(`http://localhost:8500/api/user/getApplyList/${jobId}`);
 
       if (!response.ok) {
         const errorText = await response.text();

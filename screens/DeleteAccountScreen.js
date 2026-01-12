@@ -78,7 +78,7 @@ const DeleteAccountScreen = () => {
         return;
       }
 
-      const response = await fetch(`https://laborlink.co.in/api/user/deleteProfileParmanet/${userId}`, {
+      const response = await fetch(`http://localhost:8500/api/user/deleteProfileParmanet/${userId}`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',

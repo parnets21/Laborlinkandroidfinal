@@ -81,7 +81,7 @@ export const EmployerProvider = ({ children }) => {
   const fetchEmployerById = async (id) => {
     try {
       console.log('Fetching employer data for ID:', id);
-      const response = await fetch(`https://laborlink.co.in/api/user/getEmployerById/${id}`);
+      const response = await fetch(`http://localhost:8500/api/user/getEmployerById/${id}`);
       const result = await response.json();
 
       console.log('Fetched employer data:', result);

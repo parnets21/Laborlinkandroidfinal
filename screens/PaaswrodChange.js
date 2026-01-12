@@ -12,7 +12,7 @@ import {
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const BASE_URL = 'https://laborlink.co.in';
+const BASE_URL = 'http://localhost:8500';
 
 const PasswordChange = ({ navigation }) => {
   const [currentPassword, setCurrentPassword] = useState('');
